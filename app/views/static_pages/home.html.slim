@@ -1,1 +1,13 @@
-h1 hoge
+- if logged_in?
+  h2 logged_in
+
+-else
+  /h2 not logged_in
+  button#js-login Login
+
+  div#js-form[style="display: none;"]
+    div#js-form_close
+      button close
+    form
+      input#username type="text" placeholder="Enter your name."
+      button#js-username_submit submit

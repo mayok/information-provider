@@ -1,2 +1,15 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$(function() {
+  $('#js-login').on("click", function() {
+    $('#js-login').hide();
+    $('#js-form').show();
+  });
+
+  $('#js-form_close').on('click', function() {
+    $('#js-form').hide();
+    $('#js-login').show();
+  });
+
+  $('#js-username_submit').on("click", function() {
+    console.log($('#username').val());
+  });
+});
