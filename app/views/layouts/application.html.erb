@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InformationProvider</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <title>Information Provider</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-<%= yield %>
+  <%= render 'layouts/header' %>
+
+  <div id="main">
+    <div class="container">
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <%# <%= debug(params) if Rails.env.development? %>
 
 </body>
 </html>
