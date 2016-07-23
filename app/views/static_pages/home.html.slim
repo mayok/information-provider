@@ -1,13 +1,14 @@
 - if logged_in?
+  - if !@pages.nil?
+    ul
+    - @pages.each do |page|
+      li page.title
+
   h2 logged_in
 
 -else
-  /h2 not logged_in
-  button#js-login Login
-
-  div#js-form[style="display: none;"]
-    div#js-form_close
-      button close
-    form
-      input#username type="text" placeholder="Enter your name."
-      button#js-username_submit submit
+  div
+    = form_for(@user) do |f|
+      = f.text_field :name, placeholder: "Enter your name."
+      = f.submit "submit"
+      /button#js-username_submit submit

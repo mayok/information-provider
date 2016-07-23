@@ -1,9 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
     if logged_in?
-      redirect_to user_path(@current_user.id)
+      @pages = current_user.pages.find_by(id: current_user.id)
     else
-      # do nothing
+      @user = User.new
     end
   end
 

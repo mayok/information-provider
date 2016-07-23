@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722071614) do
+ActiveRecord::Schema.define(version: 20160723081237) do
+
+  create_table "favs", force: :cascade do |t|
+    t.integer  "html"
+    t.integer  "javascript"
+    t.integer  "css"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "favs", ["user_id"], name: "index_favs_on_user_id"
 
   create_table "pages", force: :cascade do |t|
     t.string   "title"
@@ -19,7 +30,11 @@ ActiveRecord::Schema.define(version: 20160722071614) do
     t.text     "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.string   "tags"
   end
+
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
