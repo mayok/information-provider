@@ -1,21 +1,29 @@
 class UsersController < ApplicationController
-  def show
-    @page = current_user.pages.find_by(id: params[:id])
-  end
-
   def create
-    user = User.new(user_params)
-    if user.save
-      log_in user
+    if user = User.find_by(name: params[:user][:name])
+    else
+      user = User.new(user_params)
+      user.save
 
-      # fetch user fav pages
-      # user.pages.build?
+      pages = User.init_pages(params[:user][:fav_attributes])
+      pages.each do |page|
+        user.pages.create(page)
+      end
     end
+
+    log_in user
     redirect_to root_url
   end
 
   private
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user)
+            .permit(:name,
+                    fav_attributes: [:web,
+                                     :mobile,
+                                     :os,
+                                     :editor,
+                                     :lang,
+                                     :services])
     end
 end

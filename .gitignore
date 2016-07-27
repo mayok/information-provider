@@ -7,6 +7,7 @@
 # Ignore bundler config.
 /.bundle
 vendor/bundle
+urls.txt
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

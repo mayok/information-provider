@@ -1,14 +1,45 @@
 - if logged_in?
+
+  h3 = @user.name
+  - _tags.each do |tag|
+    span = tag.to_s
+    span = @user.fav.send(tag)
+    span &nbsp;&nbsp;
+
+
   - if !@pages.nil?
     ul
     - @pages.each do |page|
-      li page.title
+      li = link_to "#{page.title}", user_page_path(current_user.id, page.id)
 
-  h2 logged_in
+  - else
+    div no pages
+
+  h3 おすすめ
 
 -else
   div
     = form_for(@user) do |f|
       = f.text_field :name, placeholder: "Enter your name."
+
+      div.user_fav
+        = f.fields_for :fav do |favorite|
+          = favorite.label     :web
+          = favorite.check_box :web
+
+          = favorite.label :mobile
+          = favorite.check_box :mobile
+
+          = favorite.label :os
+          = favorite.check_box :os
+
+          = favorite.label :editor
+          = favorite.check_box :editor
+
+          = favorite.label :lang
+          = favorite.check_box :lang
+
+          = favorite.label :services
+          = favorite.check_box :services
+
       = f.submit "submit"
-      /button#js-username_submit submit

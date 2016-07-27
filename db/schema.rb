@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723081237) do
+ActiveRecord::Schema.define(version: 20160726044922) do
 
   create_table "favs", force: :cascade do |t|
-    t.integer  "html"
-    t.integer  "javascript"
-    t.integer  "css"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.integer  "web"
+    t.integer  "mobile"
+    t.integer  "os"
+    t.integer  "editor"
+    t.integer  "lang"
+    t.integer  "services"
   end
 
   add_index "favs", ["user_id"], name: "index_favs_on_user_id"
