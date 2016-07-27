@@ -1,8 +1,11 @@
 h1 = @page.title
 div = @page.tags
 div = link_to "#{@page.url}", "#{@page.url}", style: "color: blue;"
-div Good
-div Bad
+br
+div
+  button#js-article-good[data-userid="#{current_user.id}" data-tags="#{@page.tags}"] Good
+  span &nbsp; &nbsp;
+  button#js-article-bad[data-userid="#{current_user.id}" data-tags="#{@page.tags}"] Bad
 
 <br>
 div == @page.content

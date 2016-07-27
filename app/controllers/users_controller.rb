@@ -15,6 +15,21 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def update
+    user = User.find_by(id: params[:id])
+    p user
+    params[:tags].split(", ").each do |tag|
+      v = user.fav.send(tag.intern)
+      params[:op] == "true" ? v+=1 : v-=1
+      if v<0 then v = 0 end
+      user.fav.send((tag + "=").intern, v)
+
+      user.save
+    end
+
+    render :nothing => true, :status => 200 and return
+  end
+
   private
     def user_params
       params.require(:user)

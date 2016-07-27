@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   delete 'logout'    => 'session#destroy'
 
   resources :users, only: [:create] do
-    resources :pages, only: [:show], :controller => :static_pages
+    #resources :pages, only: [:show], :controller => :static_pages
   end
+  resources :pages, only: [:show], :controller => :static_pages
+  post    'update'   => 'users#update'
+  #get     'show/:id' => 'pages#show', :controller => :static_pages
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
