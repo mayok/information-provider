@@ -32,28 +32,36 @@
 
 
 -else
-  div
+  div.form_wrapper
     = form_for(@user) do |f|
-      = f.text_field :name, placeholder: "Enter your name."
+      = f.label :name, class: "text_label"
+        | Your name
+        = f.text_field :name, placeholder: "Enter your name.", class: "text_input"
 
       div.user_fav
         = f.fields_for :fav do |favorite|
-          = favorite.label     :web
-          = favorite.check_box :web
+          div.checkbox_wrapper
+            = favorite.label :web
+            = favorite.check_box :web
 
-          = favorite.label :mobile
-          = favorite.check_box :mobile
+          div.checkbox_wrapper
+            = favorite.label :mobile
+            = favorite.check_box :mobile
 
-          = favorite.label :os
-          = favorite.check_box :os
+          div.checkbox_wrapper
+            = favorite.label :os
+            = favorite.check_box :os
 
-          = favorite.label :editor
-          = favorite.check_box :editor
+          div.checkbox_wrapper
+            = favorite.label :editor
+            = favorite.check_box :editor
 
-          = favorite.label :lang
-          = favorite.check_box :lang
+          div.checkbox_wrapper
+            = favorite.label :lang
+            = favorite.check_box :lang
 
-          = favorite.label :services
-          = favorite.check_box :services
+          div.checkbox_wrapper
+            = favorite.label :services
+            = favorite.check_box :services
 
       = f.submit "submit"
